@@ -1,0 +1,41 @@
+---
+title: "Class-2019-10-17"
+author: "Anan Hafez"
+date: "10/17/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(janitor)
+library(tidyr)
+library(stringr)
+library(httr)
+library(RCurl)
+library(lubridate)
+library(readxl)
+library(gt)
+library(reshape2)
+library(ggplot2)
+library(purrr)
+library(moderndive)
+library(fs)
+library(infer)
+library(googlesheets4)
+library(scales)
+sheets_deauth()
+```
+
+```{r}
+Trains <- read.csv("trains.csv") %>% clean_names()
+
+Trains %>% 
+    group_by(treatment) %>% 
+    summarise(avg = mean(attitude))
+
+tibble(treatment = c(0, 1, 1, 0), attitude = c(13, 5, 3, 11)) %>% 
+  group_by(treatment) %>% 
+  summarise(avg = mean(attitude))
+```
+
